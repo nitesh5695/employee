@@ -1,9 +1,9 @@
 from django.db import models
-from django.db.models.enums import Choices
+
 
 class companies(models.Model):
     company_id=models.AutoField(primary_key=True)
-    company_email=models.CharField(max_length=300,unique=True)
+    email=models.CharField(max_length=300,unique=True)
     password=models.CharField(max_length=200,null=False)
     company_name=models.CharField(max_length=300,null=False)
     def __str__(self):

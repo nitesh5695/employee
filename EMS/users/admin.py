@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import companies,employers,company_profile,employer_profile
 
 class companyform(admin.ModelAdmin):
-    list_display=['company_id','company_email','password','company_name']
+    list_display=['company_id','email','password','company_name']
 admin.site.register(companies,companyform)
 class company_profile_form(admin.ModelAdmin):
     list_display=['id','company_id','address','established_year','ceo','contact_no','gst_no','created_at']

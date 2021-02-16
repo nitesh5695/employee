@@ -21,6 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'g1eddjm(zw4wbhxs0s1wro32rx_1uq#k=7g++4hb)7#j^3vd1#'
+JWT_REFRESH_KEY="thisis@secretkeythisis@secretkeythisis@secretkey"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
