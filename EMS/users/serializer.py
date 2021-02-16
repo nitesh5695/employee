@@ -12,3 +12,13 @@ class employerSerializer(serializers.ModelSerializer):
     class Meta:
         model=employers
         fields="__all__"        
+    
+class company_profileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=company_profile
+        fields="__all__"
+
+class employer_profileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=employer_profile
+        fields="__all__"            

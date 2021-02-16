@@ -7,7 +7,7 @@ class companies(models.Model):
     password=models.CharField(max_length=200,null=False)
     company_name=models.CharField(max_length=300,null=False)
     def __str__(self):
-        return self.company_email
+        return self.email
 
 class company_profile(models.Model):
     company_id=models.OneToOneField(companies,on_delete=models.CASCADE)
@@ -24,7 +24,7 @@ class employers(models.Model):
     email=models.EmailField(max_length=300,unique=True)
     name=models.CharField(max_length=250,null=True)
     password=models.CharField(max_length=200,null=True)
-    company_id=models.CharField(max_length=300,null=True)
+    company_id=models.ForeignKey(companies,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.email
