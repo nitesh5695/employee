@@ -8,7 +8,7 @@ class Department_cmpid(models.Model):
     dept_id = models.AutoField(primary_key=True)
     company = models.ForeignKey(companies, on_delete=models.CASCADE)
 
-
+employers
 choice = (
     ('accept', 'accept'),
     ('reject', 'reject')
@@ -37,3 +37,18 @@ class Leave(models.Model):
     from_date = models.DateField(default=datetime.date.today)
     to_date = models.DateField(default=datetime.date.today)
     reason = models.TextField(max_length=1200, default='Not Feeling Well')
+    status = models.CharField(max_length=10, choices=choice, default='reject')
+
+
+class Project(models.Model):
+    project_id = models.AutoField(primary_key=True)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField(max_length=500)
+
+class Salary(models.Model):
+    salary_id = models.AutoField(primary_key=True)
+    employee = models.ForeignKey(employers, on_delete=models.CASCADE)
+    from_date = models.DateField(auto_now_add=True,blank=True)
+    to_date = models.DateField(auto_now_add=True,blank=True)
+    salary = models.IntegerField()
