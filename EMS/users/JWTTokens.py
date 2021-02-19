@@ -5,7 +5,7 @@ import datetime
 def access_token(user):
     token_payload={
                 'username':user.email,
-                'exp':datetime.datetime.utcnow() + datetime.timedelta(days=0,minutes=15),
+                'exp':datetime.datetime.utcnow() + datetime.timedelta(days=1,minutes=15),
                 'iat':datetime.datetime.utcnow(),
             }
     access_token=jwt.encode(token_payload,settings.SECRET_KEY,algorithm='HS256')

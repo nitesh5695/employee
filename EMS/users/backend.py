@@ -2,6 +2,9 @@
 from .models import companies,employers
 from rest_framework import exceptions
 class MyAuthentication():
+    def login(request,username):
+        request.session['username']=username
+        return True
     def authenticate(request,email=None, password=None):    
         try:
             user= employers.objects.get(email=email,password=password)
@@ -21,4 +24,6 @@ class MyAuthentication():
             print("not exist1")
             
             return None
+
+        
             
