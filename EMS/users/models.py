@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 class companies(models.Model):
@@ -7,15 +8,17 @@ class companies(models.Model):
     password=models.CharField(max_length=200,null=False)
     company_name=models.CharField(max_length=300,null=False)
     def __str__(self):
-        return self.email
+        return str(self.company_id)
 
 class company_profile(models.Model):
-    company_id=models.OneToOneField(companies,on_delete=models.CASCADE)
+    company_id=models.OneToOneField(companies,on_delete=models.CASCADE ,primary_key=True) 
     address=models.CharField(max_length=600)
     established_year=models.CharField(max_length=4)
     ceo=models.CharField(max_length=100)
     contact_no=models.CharField(max_length=13)
     gst_no=models.CharField(max_length=100)
+    company_logo=models.CharField(max_length=300,blank=True)
+    modified_at=models.DateField(default=datetime.date.today)
     created_at=models.DateField(auto_now_add=True,blank=True)
 
 
@@ -25,6 +28,7 @@ class employers(models.Model):
     name=models.CharField(max_length=250,null=True)
     password=models.CharField(max_length=200,null=True)
     company_id=models.ForeignKey(companies,on_delete=models.CASCADE)
+    
     
     def __str__(self):
         return self.email
@@ -41,11 +45,23 @@ class employer_profile(models.Model):
     address=models.CharField(max_length=600,blank=True)
     mobile_no=models.CharField(max_length=13,blank=True)
     joining_date=models.DateField()
+    profile_image=models.CharField(max_length=300,blank=True)
     company_id=models.CharField(max_length=10,null=True)
     project_id=models.CharField(max_length=10)
     department_id=models.CharField(max_length=10,null=True)
     created_at=models.DateField(auto_now_add=True)
-
+    add_role=models.CharField(max_length=300,blank=True,null=True)
+    job_choice=(
+        ('Full Time','Full_time'),
+        ('Part Time','Part_time'),
+        ('Training','Training')
+    )
+    job_type=models.CharField(max_length=13,choices=job_choice)
+    status_choice=(
+        ('Active','Active'),
+        ('Inactive','Inactive')
+    )
+    status=models.CharField(max_length=11,choices=status_choice)
 
 
 

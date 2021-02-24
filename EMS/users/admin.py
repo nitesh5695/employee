@@ -5,7 +5,7 @@ class companyform(admin.ModelAdmin):
     list_display=['company_id','email','password','company_name']
 admin.site.register(companies,companyform)
 class company_profile_form(admin.ModelAdmin):
-    list_display=['id','company_id','address','established_year','ceo','contact_no','gst_no','created_at']
+    list_display=['company_id','address','established_year','ceo','contact_no','gst_no','created_at']
 admin.site.register(company_profile,company_profile_form)
 class employerform(admin.ModelAdmin):
     list_display=['emp_id','name','email','password','company_id']

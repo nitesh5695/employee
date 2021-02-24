@@ -5,17 +5,27 @@ class MyAuthentication():
     def login(request,username):
         request.session['username']=username
         return True
+    def isemployee(email):
+        try:
+            user=employers.objects.get(email=email) 
+            return True
+        except employers.DoesNotExist:
+            return False    
+
     def authenticate(request,email=None, password=None):    
         try:
             user= employers.objects.get(email=email,password=password)
+            return user
         except employers.DoesNotExist:
             try:
                 print(" company")
                 user=companies.objects.get(email=email,password=password)
+                
+                return user
             except:
                 raise exceptions.AuthenticationFailed('email or password is wrong')    
-            request.session['username']=user.email
-            return user
+            
+           
            
         except companies.DoesNotExist:
             print("not exist")

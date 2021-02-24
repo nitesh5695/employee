@@ -27,10 +27,13 @@ class JWTAuthentication(BaseAuthentication):
           email=payload['username']
           print(payload)
           user =employers.objects.get(email=email)
-          
+          request.session['emp_id']=user.emp_id
           request.session['username']=user.email
+                 
+          request.session['company_id']=user.company_id.company_id
+         
           #print(request.user)
-          print(user)
+         # print(user)
           return (user,token)
         except employers.DoesNotExist:
           payload=jwt.decode(token,settings.SECRET_KEY,algorithms=['HS256'])
@@ -38,7 +41,8 @@ class JWTAuthentication(BaseAuthentication):
           email=payload['username']
          
           user =companies.objects.get(email=email)
-         
+
+          request.session['company_id']=user.company_id
           request.session['username']=user.email
           print("register user")
           return (user,token)  

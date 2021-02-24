@@ -9,6 +9,7 @@ def access_token(user):
                 'iat':datetime.datetime.utcnow(),
             }
     access_token=jwt.encode(token_payload,settings.SECRET_KEY,algorithm='HS256')
+    
     return access_token
 def refresh_token(user):
     token_payload={
